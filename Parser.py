@@ -2,6 +2,7 @@ import jieba
 import feedparser
 from bs4 import BeautifulSoup
 
+from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 
 class Parser:
     
@@ -10,21 +11,36 @@ class Parser:
 
     def _tokenize(self, s):
         tokens = jieba.cut(s)
-        return [token.strip() for token in tokens if len(token.strip()) > 0]
+        return [token.strip() for token in tokens if token.strip()]
 
     def _clean(self, html):
         soup = BeautifulSoup(html)
         text = soup.get_text().replace('\xa0', ' ')
-        return self._tokenize(text)
+        return ' '.join(self._tokenize(text))
 
     def parse(self, file_name):
         feeds = feedparser.parse(file_name).entries
-        for feed in feeds:
-            print('title', feed.get('title', ''))
-            print('description', self._clean(feed.get('description', '')))
-            print('===')
+        return [self._clean(feed.get('description', '')) for feed in feeds]
 
 
 if __name__ == '__main__':
     parser = Parser()
-    parser.parse('news.rss')
+    corpus = parser.parse('news.rss')
+
+    vectorizer = TfidfVectorizer()
+    X = vectorizer.fit_transform(corpus)
+    word_map = {word: i for i, word in enumerate(vectorizer.get_feature_names())}
+    X = X.toarray()
+
+    for i, s in enumerate(corpus):
+        l = []
+        for w in s.split():
+            j = word_map.setdefault(w.lower(), -1)
+
+            if j == -1:
+                l.append((w.lower(), 0.0))
+            else:
+                l.append((w.lower(), X[i][j]))
+        print(s)
+        print(l)
+        print("===")
