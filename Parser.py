@@ -8,10 +8,14 @@ class Parser:
     def __int__(self):
         pass
 
+    def _tokenize(self, s):
+        tokens = jieba.cut(s)
+        return [token.strip() for token in tokens if len(token.strip()) > 0]
+
     def _clean(self, html):
         soup = BeautifulSoup(html)
         text = soup.get_text().replace('\xa0', ' ')
-        return list(jieba.cut(text))
+        return self._tokenize(text)
 
     def parse(self, file_name):
         feeds = feedparser.parse(file_name).entries
