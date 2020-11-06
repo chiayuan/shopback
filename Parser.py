@@ -2,11 +2,11 @@ import jieba
 import feedparser
 from typing import List, Any
 from bs4 import BeautifulSoup
-from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
+from sklearn.feature_extraction.text import TfidfVectorizer
 
 class Parser:
     
-    def __int__(self) -> None:
+    def __int__(self):
         pass
 
     def _tokenize(self, s: str) -> List[str]:
@@ -27,23 +27,12 @@ class Parser:
 
 
 if __name__ == '__main__':
+    # part 1
     parser = Parser()
     corpus = parser.parse('news.rss')
 
+    # part 2
     vectorizer = TfidfVectorizer()
     X = vectorizer.fit_transform(corpus)
     word_map = {word: i for i, word in enumerate(vectorizer.get_feature_names())}
     X = X.toarray()
-
-    for i, s in enumerate(corpus):
-        l = []
-        for w in s.split():
-            j = word_map.setdefault(w.lower(), -1)
-
-            if j == -1:
-                l.append((w.lower(), 0.0))
-            else:
-                l.append((w.lower(), X[i][j]))
-        print(s)
-        print(l)
-        print("===")
