@@ -1,6 +1,6 @@
 import jieba
 import feedparser
-from typing import List
+from typing import List, Any
 from bs4 import BeautifulSoup
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 
@@ -14,7 +14,7 @@ class Parser:
         tokens = jieba.cut(s)
         return [token.strip() for token in tokens if token.strip()]
 
-    def _clean(self, html: str) -> str:
+    def _clean(self, html: Any) -> str:
         """Given html string, remove tags and control sysmbols, and return the tokenized sentence"""
         soup = BeautifulSoup(html)
         text = soup.get_text().replace('\xa0', ' ')
