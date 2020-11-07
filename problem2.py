@@ -11,5 +11,10 @@ if __name__ == '__main__':
             corpus.append(line.rstrip())
 
     vectorizer = TfidfVectorizer()
-    X = vectorizer.fit_transform(corpus)
-    np.savetxt('output2.txt', X.toarray())
+    X = vectorizer.fit_transform(corpus).toarray()
+
+    with open('output2.txt', 'w') as f:
+        for i, sentence in enumerate(corpus):
+            v = ','.join(map(str, X[i]))
+            f.write(f'{sentence}\n')
+            f.write(f'{v}\n')
