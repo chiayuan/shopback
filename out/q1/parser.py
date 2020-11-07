@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup
 
 class Parser:
     
-    def __int__(self):
+    def __init__(self):
         pass
 
     def _tokenize(self, s: str) -> List[str]:
