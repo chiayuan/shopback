@@ -30,7 +30,6 @@ class Parser:
         text = text.lower()
 
         return ' '.join(self._tokenize(text))
-
     def parse(self, file_name: str) -> List[str]:
         """Given a rss file, return tokenized description (split by space)"""
         feeds = feedparser.parse(file_name).entries
