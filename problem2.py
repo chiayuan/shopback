@@ -5,11 +5,11 @@ from parser import Parser
 
 
 if __name__ == '__main__':
-    parser = Parser()
-    corpus = parser.parse('news.rss')
+    corpus = []
+    with open('output1.txt') as f:
+        for line in f:
+            corpus.append(line.rstrip())
 
     vectorizer = TfidfVectorizer()
     X = vectorizer.fit_transform(corpus)
-    word_map = {word: i for i, word in enumerate(vectorizer.get_feature_names())}
-    X = X.toarray()
-    np.savetxt('output2.txt', X)
+    np.savetxt('output2.txt', X.toarray())
