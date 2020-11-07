@@ -6,7 +6,7 @@ from parser import Parser
 
 if __name__ == '__main__':
     corpus = []
-    with open('output1.txt') as f:
+    with open('news.txt') as f:
         for line in f:
             corpus.append(line.rstrip())
 
