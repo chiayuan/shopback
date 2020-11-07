@@ -4,7 +4,7 @@ from typing import List, Any
 import jieba
 import feedparser
 from bs4 import BeautifulSoup
-from sklearn.feature_extraction.text import TfidfVectorizer
+
 
 class Parser:
     
@@ -34,15 +34,3 @@ class Parser:
         """Given a rss file, return tokenized description (split by space)"""
         feeds = feedparser.parse(file_name).entries
         return [self._clean(feed.get('description', '')) for feed in feeds]
-
-
-if __name__ == '__main__':
-    # part 1
-    parser = Parser()
-    corpus = parser.parse('news.rss')
-
-    # part 2
-    vectorizer = TfidfVectorizer()
-    X = vectorizer.fit_transform(corpus)
-    word_map = {word: i for i, word in enumerate(vectorizer.get_feature_names())}
-    X = X.toarray()
