@@ -42,13 +42,13 @@ The followings run with pipenv.
 If you don't have isolated environment, just run with `python main.py`
 ### question 1
 ```bash
-cd ${PROJECT_PATH}/output/q1
+cd ${PROJECT_PATH}/out/q1
 pipenv run python main.py
 ```
 
 ### question 2
 ```bash
-cd ${PROJECT_PATH}/output/q2
+cd ${PROJECT_PATH}/out/q2
 pipenv run python main.py
 ```
 
