@@ -16,7 +16,7 @@
 ## Environment
 This project is built on `Python 3.9`,  
 and using `pyenv` and `pipenv` to isolate the environment from my workspace  
-Please use these two tool to get the best experience to review my work.  
+Please use these two tools to get the best experience to review my work.  
 If not, there is also a `requirements` file for `pip install`.
 
 Please follow instructions below to setup the environment:
@@ -28,15 +28,20 @@ pip install -r requirements.txt
 ```
 
 ### Using pyenv and pipenv
-- Install Python 3.9.0 using pyenv
+- Create a virtualenv based on Python 3.9 (which will call pyenv to install)
 ```bash
-pyenv install 3.9.0
+pipenv --python 3.9.0
 ```
-- Build a virtualenv base on Pipfile
+- Install all dependencies
 ```bash
 pipenv install
 ```
-
+- If you get any error when installing all depencies, try updating setuptools in the virtualenv ([ref](https://stackoverflow.com/questions/36296134/attributeerror-install-layout-when-attempting-to-install-a-package-in-a-virtual)), and try again
+```bash
+pipenv shell
+# after entering the venv
+pip install -U setuptools
+```
 ## Run
 The followings run with pipenv.  
 If you don't have isolated environment, just run with `python main.py`
