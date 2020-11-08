@@ -2,8 +2,15 @@
 - interviewee: Chia-Yuan Liu
 - email: chiayuanliu.tw@gmail.com
 
+## Usage
+- To review my work in required format, please checkout the `out` directory.
+- For general scraping and NLP usage, please checkout the `src` directory.
 
 ## Prerequisites
+### Development tools
+- [pyenv](https://github.com/pyenv/pyenv): Manage Python versions of our systems
+- [pipenv](https://github.com/pypa/pipenv): Manage virtualenv and dependencies for project development
+
 ### For question 1
 - [feedparser](https://github.com/kurtmckee/feedparser): general usage for parsing rss format xml
 - [beautifulsoup4](https://www.crummy.com/software/BeautifulSoup/): furthur data cleaning for text with html tags
@@ -15,7 +22,7 @@
 
 ## Environment
 This project is built on `Python 3.9`,  
-and using `pyenv` and `pipenv` to isolate the environment from my workspace  
+and using `pyenv` and `pipenv` to isolate the environment from my workspace.  
 Please use these two tools to get the best experience to review my work.  
 If not, there is also a `requirements` file for `pip install`.
 

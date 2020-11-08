@@ -1,7 +1,7 @@
 ### Introduction
-This question is about given a list of tokenized article,
+Given a list of tokenized article,
 transform them into tf-idf vectors.
-Further applications probably be clustering or get the most similar articles by given one.
+Further applications probably be documents clustering or getting the most similar articles by given one.
 
 In this question, I use scikit-learn (https://scikit-learn.org/stable/).
 scikit-learn is known as machine learning toolkits,
@@ -16,7 +16,7 @@ It is the same as question 1, so I just copy/paste the same description:
 
 This program is build upon python 3.9 and pyenv/pipenv.
 If you have pyenv, pipenv and python 3.9 in your environment,
-got back to the root path of the project and run "pipenv install"
+got back to the root path of the project and run "pipenv --python 3.9.0", "pipenv install"
 
 If not, I have provided the requirement file in the root path
 run "pip install -r requirements.txt".
