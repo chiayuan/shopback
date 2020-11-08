@@ -7,7 +7,7 @@ from parser import Parser
 
 if __name__ == '__main__':
     parser = Parser()
-    corpus = parser.parse('news.rss')
+    corpus = [parser.process(sentence) for sentence in parser.parse('news.rss', 'description')]
 
     vectorizer = TfidfVectorizer()
     X = vectorizer.fit_transform(corpus).toarray()

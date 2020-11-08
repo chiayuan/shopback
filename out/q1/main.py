@@ -3,9 +3,11 @@ from parser import Parser
 
 if __name__ == '__main__':
     parser = Parser()
-    corpus = parser.parse('news.rss')
+    corpus = parser.parse('news.rss', 'description')
 
-    with open('output.txt', 'w') as f, open('../q2/news.txt', 'w') as f_etl:
+    with open('description.txt', 'w') as f_des, open('output.txt', 'w') as f, open('../q2/news.txt', 'w') as f_etl:
         for sentence in corpus:
-            f.write(f'{sentence}\n')
-            f_etl.write(f'{sentence}\n')
+            tokens = parser.process(sentence)
+            f_des.write(f'{sentence}\n')
+            f.write(f'{tokens}\n')
+            f_etl.write(f'{tokens}\n')

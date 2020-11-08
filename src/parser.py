@@ -17,9 +17,9 @@ class Parser:
         return [token.strip() for token in tokens if token.strip()]
 
     def _clean(self, html: Any) -> str:
-        """Given html string, remove tags and control sysmbols, and return the tokenized sentence"""
+        """Given html string, remove tags and control sysmbols and return."""
         # remove tags
-        soup = BeautifulSoup(html)
+        soup = BeautifulSoup(html, 'html.parser')
         text = soup.get_text().replace('\xa0', ' ')
 
         # use regex to remove meaningless chars
@@ -28,10 +28,15 @@ class Parser:
         
         # to lowercase
         text = text.lower()
+        return text
 
-        return ' '.join(self._tokenize(text))
-
-    def parse(self, file_name: str) -> List[str]:
-        """Given a rss file, return tokenized description (split by space)"""
+    def parse(self, file_name: str, field: str) -> List[str]:
+        """Given a rss file and field name, return a list of corresponding field content"""
         feeds = feedparser.parse(file_name).entries
-        return [self._clean(feed.get('description', '')) for feed in feeds]
+        return [feed.get(field, '') for feed in feeds]
+
+    def process(self, raw_text: str) -> str:
+        """Given a raw html string, return the cleaned and tokenized version of it"""
+        text = self._clean(raw_text)
+        text = ' '.join(self._tokenize(text))
+        return text
