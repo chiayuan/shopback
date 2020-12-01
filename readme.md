@@ -1,7 +1,3 @@
-## Shopback Interview Take-home Test
-- interviewee: Chia-Yuan Liu
-- email: chiayuanliu.tw@gmail.com
-
 ## Usage
 - To review my work in required format, please checkout the `out` directory.
 - For general scraping and NLP usage, please checkout the `src` directory.
